@@ -313,7 +313,7 @@ from geopy.extra.rate_limiter import RateLimiter
 import pandas as pd
 locator = ArcGIS(user_agent = "myGeocoder")
 geocode = RateLimiter(locator.geocode, min_delay_seconds = 1)
-a = pd.read_json("/Users/limbangjin/Documents/Propertyguru.JSON")
+a = pd.read_json("../data/property_raw_data.JSON")
 a['location'] = a['Address'].apply(geocode)
 a['point'] = a['location'].apply(lambda loc: tuple(loc.point)[0:2] if loc else None)
 a[['latitude', 'longitude']] = pd.DataFrame(a['point'].tolist(), index=a.index)
